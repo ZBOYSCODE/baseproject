@@ -1,0 +1,100 @@
+
+<nav class="navbar navbar-default navbar-fixed-top navbar-gradient navbar-styled" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- logo -->
+      <a class="navbar-brand" href="<?php print $this->url->get() ?>"><img alt="" height="20" src="<?php print($this->url->get("img/latam-logo.png"))?>"/></a>
+    </div>
+    <div class="collapse navbar-collapse animated fadeIn" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav animated fadeIn text15">
+        
+        <li class=""><a href="<?php print($this->url->get('')) ?>calendario"> Mi Calendario </a></li>
+
+
+        <?php
+
+        if($this->AccesoAcl->tienePermiso('crearevento', 'actividad')) { ?>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b> Eventos </b> <span class="caret"></span></a>
+              <ul id="login-dp" class="dropdown-menu">
+                <li class=""><a href="<?php print($this->url->get('')) ?>evento/nuevo"> Nuevo Evento  </a></li>
+                <li class=""><a href="javscript:void(0)" data-toggle="tooltip" data-placement="bottom" title="Proximamente"> Historial de acciones  </a></li>
+              </ul>
+            </li>
+
+        <?php
+        }
+        ?>
+
+        <?php
+
+        if($this->AccesoAcl->tienePermiso('index', 'proyecto')) { ?>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b> Proyecto </b> <span class="caret"></span></a>
+              <ul id="login-dp" class="dropdown-menu">
+                <li class=""><a href="<?php print($this->url->get('proyecto/')) ?>"> Listado de proyectos</a></li>
+                
+                <?php if($this->AccesoAcl->tienePermiso('create', 'proyecto')) { ?>
+                    <li class=""><a href="<?php print($this->url->get('proyecto/create')) ?>"> Nuevo proyecto  </a></li>
+                <?php } ?>
+                
+              </ul>
+            </li>
+
+        <?php
+        }
+
+        ?>
+
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b> Administrar </b> <span class="caret"></span></a>
+
+            <ul id="login-dp" class="dropdown-menu">
+                
+                <?php if($this->AccesoAcl->tienePermiso('index', 'bloqueo')) { ?>
+                    <li class=""><a href="<?php print($this->url->get('bloqueo/')) ?>"> Bloqueo horas  </a></li>
+                <?php } ?>
+
+                <?php if($this->AccesoAcl->tienePermiso('index', 'permissions')) { ?>
+                    <li class=""><a href="<?php print($this->url->get('permissions/')) ?>"> Permisos  </a></li>
+                <?php } ?>
+
+                <?php if($this->AccesoAcl->tienePermiso('index', 'usuarios')) { ?>
+                    <li class=""><a href="<?php print($this->url->get('usuarios/')) ?>"> Usuarios  </a></li>
+                <?php } ?>
+
+            </ul>
+        </li>
+
+
+        <li class=""><a href="javscript:void(0)" data-toggle="tooltip" data-placement="bottom" title="Proximamente"> Informes  </a></li>
+        <li class=""><a href="javscript:void(0)" data-toggle="tooltip" data-placement="bottom" title="Proximamente"> Opciones  </a></li>
+        <li class=""><a href="javscript:void(0)" id='searchop'>Buscar</a></li>
+        <li class=""><a href="javscript:void(0)" data-toggle="tooltip" data-placement="bottom" title="Proximamente"> Ayuda  </a></li>
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="gi gi-user"></i><b> <?php print($this->auth->getIdentity()['name'])?> </b> <span class="caret"></span></a>
+            <ul id="login-dp" class="dropdown-menu">
+                <li class=""><a href="<?php print($this->url->get($this->auth->getIdentity()['email'])) ?>"> Perfil  </a></li>
+                <li class=""><a href="<?php print($this->url->get('logout')) ?>"> Salir  </a></li>
+            </ul>
+        </li>
+        <li class="logo-to-right">
+          <a href="<?php print($this->config->appAutorLink)?>" >
+            <img class="img-responsive" height="10" src="<?php print $this->url->get() ?>img/zenta-logo.png">
+          </a>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
